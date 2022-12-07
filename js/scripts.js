@@ -1,25 +1,38 @@
 
-let favoriteFood = 'Mexican Food';
-// document.write(favoriteFood);
+let pokemonList = [
 
-console.log(favoriteFood)
+    { 
+        name: "Balbasaur",
+        weight: 15.2,
+        types: ['grass', 'poison'],
+        abilities: 'overgrow',
+        category: 'seed',
+    },
 
+    { 
+        name: "Ivysaur",
+        weight: 28.7,
+        types: ['grass', 'poison'],
+        abilities: 'overgrow',
+        category: 'seed',
+    },
 
-// let self = {
-//     name: 'Sophia',
-//     age: 39,
-//      child: {
-//         name: 'Tulo',
-//         age: '10 months'
-//     }
-// }
+    { 
+        name: "Charmander",
+        weight: 18.7,
+        types: ['fire'],
+        abilities: 'blaze',
+        category: 'lizard',
+    },
 
-// console.log(self)
-// self.husband = 'Trey';
-// console.log(self)
-
-let myArray = [27, 9, 13]
-
-console.log(myArray[1])
+    { 
+        name: "Metapod",
+        weight: 21.8,
+        types: ['bug'],
+        abilities: 'shed skin',
+        category: 'cocoon',
+    },
+  
+]
 
 
