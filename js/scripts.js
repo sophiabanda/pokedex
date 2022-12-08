@@ -36,3 +36,12 @@ let pokemonList = [
 ]
 
 
+for (let i = 0; i< pokemonList.length; i ++) {
+    console.log(pokemonList[i]);
+    document.write(`${pokemonList[i].name} weighs: ${pokemonList[i].weight}lbs. ` + "<br>")
+        
+
+    
+}
+
+
