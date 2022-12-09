@@ -67,3 +67,5 @@ printArrayDetails(pokemonList)
 
 
 
+
+
