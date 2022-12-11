@@ -55,16 +55,13 @@ let pokemonList = [
 
 //function
 
-function printArrayDetails (list) {
-    for (let i = 0; i < list.length; i ++) {
-        document.write("<p>" + list[i].name + "</p>")
-    }
-}
+// function printArrayDetails (list) {
+//     for (let i = 0; i < list.length; i ++) {
+//         document.write("<p>" + list[i].name + "</p>")
+//     }
+// }
 
-printArrayDetails(pokemonList)
-
-
-
+// printArrayDetails(pokemonList)
 
 
 
