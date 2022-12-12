@@ -1,5 +1,7 @@
 
-let pokemonList = [
+let pokemonRepo = (function() {
+
+    let pokemonList = [
 
     { 
         name: "Balbasaur",
@@ -33,9 +35,24 @@ let pokemonList = [
         category: 'cocoon',
     },
   
-]
+]; 
+
+return {
+    add: function(pokemon) {
+        pokemonList.push(pokemon)
+    },
+    getAll: function() {
+        return pokemonList;
+    }
+}
 
 
+})();
+
+
+console.log(pokemonRepo.add({name: 'Pikachu'}))
+console.log(pokemonRepo.getAll());
+console.log(pokemonRepo)
 
 // for (let i = 0; i< pokemonList.length; i ++) {
 //     //Using string interpolation and dot notation we have accessed the objects in the pokemon array.
@@ -62,10 +79,10 @@ let pokemonList = [
 
 // printArrayDetails(pokemonList)
 
-pokemonList.forEach( function(poke) {
-    console.log(poke.name);
-    document.write(`${poke.name} weighs in at ${poke.weight}. <br>`)
-})
+// pokemonList.forEach( function(poke) {
+//     console.log(poke.name);
+//     document.write(`${poke.name} weighs in at ${poke.weight}. <br>`)
+// })
 
 
 
