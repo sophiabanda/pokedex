@@ -53,15 +53,19 @@ let pokemonList = [
   
 // }
 
-//function
-
 // function printArrayDetails (list) {
 //     for (let i = 0; i < list.length; i ++) {
-//         document.write("<p>" + list[i].name + "</p>")
+//         // document.write("<p>" + list[i].name + "</p>");
+//         console.log(list[i].name);
 //     }
 // }
 
 // printArrayDetails(pokemonList)
+
+pokemonList.forEach( function(poke) {
+    console.log(poke.name);
+    document.write(`${poke.name} weighs in at ${poke.weight}. <br>`)
+})
 
 
 
