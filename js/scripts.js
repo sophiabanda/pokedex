@@ -43,18 +43,22 @@ return {
     // },
 
     //solution one-----------------------------
-//     add: function(pokemon) {
-//         if (typeof pokemon === 'string') {
-//             return pokemonList.push(pokemon);
-//         } else {
-//             console.log('Please input the name of a Pokemon.')
-//         }
-// },
-// solution two---------------------------------------------------
     add: function(pokemon) {
-       if (pokemon === Object.keys('string')) {
-        pokemonList.push(pokemon);
-}},
+        //HAVE ENRIQUE EXPLAIN WHY THIS WORKS. 
+        //This is also letting me add "weight: 21"
+        if (typeof pokemon === 'object' && 'name') {
+            return pokemonList.push(pokemon);
+        } else {
+            console.log('Please input the name of a Pokemon.')
+        }
+},
+// // ORIGINAL SOLUTION---------------------------------------------------
+// if (typeof pokemon === 'string') {
+//     return pokemonList.push(pokemon);
+// } else {
+//     console.log('Please input the name of a Pokemon.')
+// }
+// },
     
     getAll: function() {
         return pokemonList;
@@ -66,6 +70,7 @@ return {
 
 
 pokemonRepo.add({name: 'Pikachu'});
+pokemonRepo.add({weight: 21})
 console.log(pokemonRepo.getAll());
 
 // pokemonRepo.getAll().forEach(function(pokemon) {
