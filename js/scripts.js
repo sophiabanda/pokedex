@@ -38,9 +38,18 @@ let pokemonRepo = (function() {
 ]; 
 
 return {
+    // add: function(pokemon) {
+    //     pokemonList.push(pokemon)
+    // },
+
     add: function(pokemon) {
-        pokemonList.push(pokemon)
-    },
+        if (typeof pokemon === 'string') {
+            pokemonList.push(pokemon);
+        } else {
+            console.log(`Please input a Pokemon name here.`);
+        }
+},
+    
     getAll: function() {
         return pokemonList;
     }
@@ -56,15 +65,12 @@ console.log(pokemonRepo)
 
 
 
-// pokemonList.forEach(function(poke) {
-//     console.log(poke.name);
-//     document.write(`${poke.name} weighs in at ${poke.weight}. <br>`)
-// })
 
-pokemonRepo.getAll().forEach(function(pokemon) {
-    console.log(pokemon.name);
-    document.write(`${pokemon.name} weighs in at ${pokemon.weight}lbs<br>`)
-})
+
+// pokemonRepo.getAll().forEach(function(pokemon) {
+//     console.log(pokemon.name);
+//     document.write(`${pokemon.name} weighs in at ${pokemon.weight}lbs<br>`)
+// })
 
 
 

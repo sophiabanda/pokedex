@@ -22,3 +22,8 @@
 // }
 
 // printArrayDetails(pokemonList)
+
+// pokemonList.forEach(function(poke) {
+//     console.log(poke.name);
+//     document.write(`${poke.name} weighs in at ${poke.weight}. <br>`)
+// })
