@@ -56,10 +56,17 @@ console.log(pokemonRepo)
 
 
 
-// pokemonList.forEach( function(poke) {
+// pokemonList.forEach(function(poke) {
 //     console.log(poke.name);
 //     document.write(`${poke.name} weighs in at ${poke.weight}. <br>`)
 // })
+
+pokemonRepo.getAll().forEach(function(pokemon) {
+    console.log(pokemon.name);
+    document.write(`${pokemon.name} weighs in at ${pokemon.weight}lbs<br>`)
+})
+
+
 
 
 
