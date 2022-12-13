@@ -44,10 +44,9 @@ return {
 
     //solution one-----------------------------
     add: function(pokemon) {
-        //HAVE ENRIQUE EXPLAIN WHY THIS WORKS. 
-        //This is also letting me add "weight: 21"
+        //how to make this work??
         if (typeof pokemon === 'object' && 'name') {
-            return pokemonList.push(pokemon);
+            pokemonList.push(pokemon);
         } else {
             console.log('Please input the name of a Pokemon.')
         }
@@ -59,25 +58,48 @@ return {
 //     console.log('Please input the name of a Pokemon.')
 // }
 // },
+
+
     
     getAll: function() {
         return pokemonList;
+    },
+
+    addListItem: function(pokemon) {
+
+    let pokeList = document.querySelector('.pokemon-list');
+    let pokeItem = document.createElement('li');
+    let pokeButton = document.createElement('button');
+    let pokeDetails = document.createElement('p')
+    pokeButton.innerText = pokemon.name;
+    pokeButton.classList.add('button-class');
+    pokeItem.appendChild(pokeButton);
+    pokeList.appendChild(pokeItem);
+    console.log(pokeDetails);
+    pokeButton.addEventListener('click', function(pokemon) {
+        console.log(pokemon);
+    })
+    },
+
+    showDetails: function(pokemon) {
+        console.log(this.showDetails)
+        return pokemon.abilities
     }
 }
-
 
 })();
 
 
+
+pokemonRepo.getAll().forEach(function(pokemon) {
+     pokemonRepo.addListItem(pokemon);
+})
+
+
+
 pokemonRepo.add({name: 'Pikachu'});
-pokemonRepo.add({weight: 21})
-console.log(pokemonRepo.getAll());
-
-// pokemonRepo.getAll().forEach(function(pokemon) {
-//     console.log(pokemon.name);
-//     document.write(`${pokemon.name} weighs in at ${pokemon.weight}lbs<br>`)
-// })
-
+// pokemonRepo.add({weight: 21});
+// console.log(pokemonRepo.getAll());
 
 
 
