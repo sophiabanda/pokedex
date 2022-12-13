@@ -38,33 +38,73 @@ let pokemonRepo = (function() {
 ]; 
 
 return {
+    // add: function(pokemon) {
+    //     pokemonList.push(pokemon)
+    // },
+
+    //solution one-----------------------------
     add: function(pokemon) {
-        pokemonList.push(pokemon)
-    },
+        //how to make this work??
+        if (typeof pokemon === 'object' && 'name') {
+            pokemonList.push(pokemon);
+        } else {
+            console.log('Please input the name of a Pokemon.')
+        }
+},
+// // ORIGINAL SOLUTION---------------------------------------------------
+// if (typeof pokemon === 'string') {
+//     return pokemonList.push(pokemon);
+// } else {
+//     console.log('Please input the name of a Pokemon.')
+// }
+// },
+
+
+    
     getAll: function() {
         return pokemonList;
+    },
+
+    addListItem: function(pokemon) {
+
+    let pokeList = document.querySelector('.pokemon-list');
+    let pokeItem = document.createElement('li');
+    let pokeButton = document.createElement('button');
+    let pokeDetails = document.createElement('p')
+    pokeButton.innerText = pokemon.name;
+    pokeButton.classList.add('button-class');
+    pokeItem.appendChild(pokeButton);
+    pokeList.appendChild(pokeItem);
+    console.log(pokeDetails);
+    pokeButton.addEventListener('click', function(pokemon) {
+        console.log(pokemon);
+    })
+    },
+
+    showDetails: function(pokemon) {
+        console.log(this.showDetails)
+        return pokemon.abilities
     }
 }
-
 
 })();
 
 
-console.log(pokemonRepo.add({name: 'Pikachu'}));
-console.log(pokemonRepo.getAll());
-console.log(pokemonRepo)
-
-
-
-// pokemonList.forEach(function(poke) {
-//     console.log(poke.name);
-//     document.write(`${poke.name} weighs in at ${poke.weight}. <br>`)
-// })
 
 pokemonRepo.getAll().forEach(function(pokemon) {
-    console.log(pokemon.name);
-    document.write(`${pokemon.name} weighs in at ${pokemon.weight}lbs<br>`)
+     pokemonRepo.addListItem(pokemon);
 })
+
+
+
+pokemonRepo.add({name: 'Pikachu'});
+// pokemonRepo.add({weight: 21});
+// console.log(pokemonRepo.getAll());
+
+
+
+
+
 
 
 
