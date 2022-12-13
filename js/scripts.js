@@ -42,13 +42,19 @@ return {
     //     pokemonList.push(pokemon)
     // },
 
-    add: function(pokemon) {
-        if (typeof pokemon === 'string') {
-            pokemonList.push(pokemon);
-        } else {
-            console.log(`Please input a Pokemon name here.`);
-        }
-},
+    //solution one-----------------------------
+//     add: function(pokemon) {
+//         if (typeof pokemon === 'string') {
+//             return pokemonList.push(pokemon);
+//         } else {
+//             console.log('Please input the name of a Pokemon.')
+//         }
+// },
+// solution two---------------------------------------------------
+//     add: function(pokemon) {
+//        if (pokemon === Object.keys('string')) {
+//         pokemonList.push(pokemon);
+// }},
     
     getAll: function() {
         return pokemonList;
@@ -59,9 +65,11 @@ return {
 })();
 
 
-console.log(pokemonRepo.add({name: 'Pikachu'}));
+pokemonRepo.add({name: 'Pikachu'});
+// console.log(pokemonRepo.add2({name: 'Ellen'}));
 console.log(pokemonRepo.getAll());
-console.log(pokemonRepo)
+
+
 
 
 
