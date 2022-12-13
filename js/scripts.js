@@ -51,10 +51,10 @@ return {
 //         }
 // },
 // solution two---------------------------------------------------
-//     add: function(pokemon) {
-//        if (pokemon === Object.keys('string')) {
-//         pokemonList.push(pokemon);
-// }},
+    add: function(pokemon) {
+       if (pokemon === Object.keys('string')) {
+        pokemonList.push(pokemon);
+}},
     
     getAll: function() {
         return pokemonList;
@@ -66,19 +66,18 @@ return {
 
 
 pokemonRepo.add({name: 'Pikachu'});
-// console.log(pokemonRepo.add2({name: 'Ellen'}));
 console.log(pokemonRepo.getAll());
-
-
-
-
-
-
 
 // pokemonRepo.getAll().forEach(function(pokemon) {
 //     console.log(pokemon.name);
 //     document.write(`${pokemon.name} weighs in at ${pokemon.weight}lbs<br>`)
 // })
+
+
+
+
+
+
 
 
 
