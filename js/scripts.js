@@ -76,6 +76,7 @@ return {
         console.log(pokemon.name);
         console.log(pokemon.weight);
         console.log(pokemon.abilities);
+        showDetails(pokemon);
     })
     },
 
