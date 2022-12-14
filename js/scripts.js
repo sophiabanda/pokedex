@@ -38,12 +38,11 @@ let pokemonRepo = (function() {
   
 ]; 
 
-return {
-    // add: function(pokemon) {
-    //     pokemonList.push(pokemon)
-    // },
+let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-    //solution one-----------------------------
+
+return {
+
     add: function(pokemon) {
         //how to make this work??
         if (typeof pokemon === 'object' && 'name') {
@@ -51,14 +50,38 @@ return {
         } else {
             console.log('Please input the name of a Pokemon.')
         }
-},
-// // ORIGINAL SOLUTION---------------------------------------------------
-// if (typeof pokemon === 'string') {
-//     return pokemonList.push(pokemon);
-// } else {
-//     console.log('Please input the name of a Pokemon.')
-// }
-// },
+    },
+
+    loadList: function() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsURL: item.url
+                };
+                add(pokemon);
+            });
+        }).catch(function (e) {
+            console.error(e);
+        })
+    },
+    
+
+    loadDetails: function (item) {
+        let url = item.detailsURL;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            item.imageUrl = details.sprites.front_default;
+            item.weight = details.weight;
+            item.types = details.types;
+            item.abilities = details.abilities;
+        }).catch(function (e) {
+            console.error(e);
+        });
+    },
 
     getAll: function() {
         return pokemonList;
@@ -80,25 +103,29 @@ return {
         showDetails(pokemon);
     })
     },
-
 }
 
 })();
 
+
 function showDetails(pokemon) {
-    console.log(pokemon);
+    loadDetails(pokemon).then(function () {
+        console.log(pokemon);
+    })
 }
 
 
-pokemonRepo.getAll().forEach(function(pokemon) {
-     pokemonRepo.addListItem(pokemon);
-})
 
 
+pokemonRepo.loadList().then(function () {
+    pokemonRepo.getAll().forEach(function(pokemon) {
+        pokemonRepo.addListItem(pokemon);
+   });
+});
 
 pokemonRepo.add({name: 'Pikachu'});
 // pokemonRepo.add({weight: 21});
-console.log(pokemonRepo.getAll());
+// console.log(pokemonRepo.getAll());
 
 
 

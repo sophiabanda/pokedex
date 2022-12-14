@@ -27,3 +27,17 @@
 //     console.log(poke.name);
 //     document.write(`${poke.name} weighs in at ${poke.weight}. <br>`)
 // })
+
+    //solution one-----------------------------
+    // add: function(pokemon) {
+    //     pokemonList.push(pokemon)
+    // },
+
+
+// // ORIGINAL SOLUTION---------------------------------------------------
+// if (typeof pokemon === 'string') {
+//     return pokemonList.push(pokemon);
+// } else {
+//     console.log('Please input the name of a Pokemon.')
+// }
+// },
