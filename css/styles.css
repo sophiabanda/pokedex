@@ -3,6 +3,6 @@ body {
     color: darkblue;
 }
 
-.pokemon-list {
-    text-decoration: none;
+.pokemon-list, li {
+    list-style: none;
 }
