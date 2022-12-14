@@ -72,18 +72,20 @@ return {
     pokeButton.classList.add('button-class');
     pokeItem.appendChild(pokeButton);
     pokeList.appendChild(pokeItem);
-    pokeButton.addEventListener('click', function(pokemon) {
-        console.log(pokemon);
+    pokeButton.addEventListener('click', function() {
+        console.log(pokemon.name);
+        console.log(pokemon.weight);
+        console.log(pokemon.abilities);
     })
     },
 
-    showDetails: function(pokemon) {
-        console.log(pokemon);
-    }
 }
 
-
 })();
+
+function showDetails(pokemon) {
+    console.log(pokemon);
+}
 
 
 pokemonRepo.getAll().forEach(function(pokemon) {
