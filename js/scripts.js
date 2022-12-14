@@ -59,8 +59,6 @@ return {
 // }
 // },
 
-
-    
     getAll: function() {
         return pokemonList;
     },
@@ -70,25 +68,22 @@ return {
     let pokeList = document.querySelector('.pokemon-list');
     let pokeItem = document.createElement('li');
     let pokeButton = document.createElement('button');
-    let pokeDetails = document.createElement('p')
     pokeButton.innerText = pokemon.name;
     pokeButton.classList.add('button-class');
     pokeItem.appendChild(pokeButton);
     pokeList.appendChild(pokeItem);
-    console.log(pokeDetails);
     pokeButton.addEventListener('click', function(pokemon) {
         console.log(pokemon);
     })
     },
 
     showDetails: function(pokemon) {
-        console.log(this.showDetails)
-        return pokemon.abilities
+        console.log(pokemon);
     }
 }
 
-})();
 
+})();
 
 
 pokemonRepo.getAll().forEach(function(pokemon) {
