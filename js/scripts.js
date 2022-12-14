@@ -96,7 +96,7 @@ pokemonRepo.getAll().forEach(function(pokemon) {
 
 pokemonRepo.add({name: 'Pikachu'});
 // pokemonRepo.add({weight: 21});
-// console.log(pokemonRepo.getAll());
+console.log(pokemonRepo.getAll());
 
 
 
