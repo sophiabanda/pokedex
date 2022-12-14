@@ -59,8 +59,6 @@ return {
 // }
 // },
 
-
-    
     getAll: function() {
         return pokemonList;
     },
@@ -70,25 +68,24 @@ return {
     let pokeList = document.querySelector('.pokemon-list');
     let pokeItem = document.createElement('li');
     let pokeButton = document.createElement('button');
-    let pokeDetails = document.createElement('p')
     pokeButton.innerText = pokemon.name;
     pokeButton.classList.add('button-class');
     pokeItem.appendChild(pokeButton);
     pokeList.appendChild(pokeItem);
-    console.log(pokeDetails);
-    pokeButton.addEventListener('click', function(pokemon) {
-        console.log(pokemon);
+    pokeButton.addEventListener('click', function() {
+        console.log(pokemon.name);
+        console.log(pokemon.weight);
+        console.log(pokemon.abilities);
     })
     },
 
-    showDetails: function(pokemon) {
-        console.log(this.showDetails)
-        return pokemon.abilities
-    }
 }
 
 })();
 
+function showDetails(pokemon) {
+    console.log(pokemon);
+}
 
 
 pokemonRepo.getAll().forEach(function(pokemon) {
@@ -99,7 +96,7 @@ pokemonRepo.getAll().forEach(function(pokemon) {
 
 pokemonRepo.add({name: 'Pikachu'});
 // pokemonRepo.add({weight: 21});
-// console.log(pokemonRepo.getAll());
+console.log(pokemonRepo.getAll());
 
 
 
