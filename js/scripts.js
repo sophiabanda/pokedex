@@ -1,26 +1,24 @@
-import fetch from "node-fetch";
 
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-return {
-
-    add: function(pokemon) {
-        //how to make this work??
+    function add(pokemon) {
         if (typeof pokemon === 'object' && 'name') {
             pokemonList.push(pokemon);
         } else {
             console.log('Please input the name of a Pokemon.')
-        }
-    },
+        };
+    }
 
-    getAll: function() {
+    function getAll() {
         return pokemonList;
-    },
+    }
 
-    addListItem: function(pokemon) {
+    function addListItem (pokemon) {
+
+        if (typeof document !== 'undefined' ) {
 
         let pokeList = document.querySelector('.pokemon-list');
         let pokeItem = document.createElement('li');
@@ -34,53 +32,58 @@ return {
             console.log(pokemon.weight);
             console.log(pokemon.abilities);
             showDetails(pokemon);
-        })
-        },
+        });
+        }
 
-    loadList: function() {
+    }
+
+    function loadList() {
         return fetch(apiUrl).then(function (response) {
             return response.json();
         }).then(function (json) {  
             json.results.forEach(function (item) {
-                let add = {
-                    name: add.name,
+                let pokemon = {
+                    name: item.name,
                     detailsURL: item.url
                 };
-                add(item);
+                add(pokemon);
             });
         }).catch(function (e) {
             console.error(e);
-        })
-    },
-    
+        });
+    }
 
-    loadDetails: function (item) {
+    function loadDetails(item) {
         let url = item.detailsURL;
         return fetch(url).then(function (response) {
             return response.json();
         }).then(function (details) {
             item.imageUrl = details.sprites.front_default;
-            item.weight = details.weight;
+            // item.weight = details.weight;
             item.types = details.types;
-            item.abilities = details.abilities;
+            // item.abilities = details.abilities;
         }).catch(function (e) {
             console.error(e);
         });
-    },
+    }
 
- 
+    return {
+        add: add,
+        getAll: getAll,
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails
+
+    }
 }
-
-})();
+)();
 //End of IIFE
 
 
 function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-        console.log(pokemon);
-    })
+    pokemonRepo.loadDetails(pokemon).then(function () {
+    });
 }
-
 
 
 pokemonRepo.loadList().then(function () {
