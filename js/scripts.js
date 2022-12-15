@@ -38,8 +38,9 @@ let pokemonRepo = (function() {
     }
 
     function loadList() {
+        
         return fetch(apiUrl).then(function (response) {
-            return response.json()
+        return response.json()
         }).then(function (json) {  
             json.results.forEach(function (item) {
                 let pokemon = {
