@@ -1,120 +1,95 @@
 
-
 let pokemonRepo = (function() {
 
-    let pokemonList = [
+    let pokemonList = []; 
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-    { 
-        name: "Balbasaur",
-        weight: 15.2,
-        types: ['grass', 'poison'],
-        abilities: 'overgrow',
-        category: 'seed',
-    },
-
-    { 
-        name: "Ivysaur",
-        weight: 28.7,
-        types: ['grass', 'poison'],
-        abilities: 'overgrow',
-        category: 'seed',
-    },
-
-    { 
-        name: "Charmander",
-        weight: 18.7,
-        types: ['fire'],
-        abilities: 'blaze',
-        category: 'lizard',
-    },
-
-    { 
-        name: "Metapod",
-        weight: 21.8,
-        types: ['bug'],
-        abilities: 'shed skin',
-        category: 'cocoon',
-    },
-  
-]; 
-
-let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-
-
-return {
-
-    add: function(pokemon) {
-        //how to make this work??
+    function add(pokemon) {
         if (typeof pokemon === 'object' && 'name') {
             pokemonList.push(pokemon);
         } else {
             console.log('Please input the name of a Pokemon.')
-        }
-    },
+        };
+    }
 
-    loadList: function() {
+    function getAll() {
+        return pokemonList;
+    }
+
+    function addListItem (pokemon) {
+
+        if (typeof document !== 'undefined' ) {
+
+        let pokeList = document.querySelector('.pokemon-list');
+        let pokeItem = document.createElement('li');
+        let pokeButton = document.createElement('button');
+        pokeButton.innerText = pokemon.name;
+        pokeButton.classList.add('button-class');
+        pokeItem.appendChild(pokeButton);
+        pokeList.appendChild(pokeItem);
+        pokeButton.addEventListener('click', function() {
+            console.log(pokemon.name);
+            // console.log(pokemon.weight);
+            // console.log(pokemon.name);
+            showDetails(pokemon);
+        });
+        }
+
+    }
+
+    function loadList() {
         return fetch(apiUrl).then(function (response) {
-            return response.json();
-        }).then(function (json) {
+            return response.json()
+        }).then(function (json) {  
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
-                    detailsURL: item.url
+                    detailsURL: item.url,
+                    weight: item.url.weight
+                    //how to pull in the weight I was able to pull in under load details?
                 };
                 add(pokemon);
             });
         }).catch(function (e) {
             console.error(e);
-        })
-    },
-    
+        });
+    }
 
-    loadDetails: function (item) {
+    function loadDetails(item) {
         let url = item.detailsURL;
         return fetch(url).then(function (response) {
             return response.json();
         }).then(function (details) {
             item.imageUrl = details.sprites.front_default;
-            item.weight = details.weight;
             item.types = details.types;
+            item.weight = details.weight;
             item.abilities = details.abilities;
+            console.log(details.weight)
+            //how to access the array items inside of abilities key ----- ? ? ?
+
         }).catch(function (e) {
             console.error(e);
         });
-    },
+    }
 
-    getAll: function() {
-        return pokemonList;
-    },
+    return {
+        add: add,
+        getAll: getAll,
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails
 
-    addListItem: function(pokemon) {
-
-    let pokeList = document.querySelector('.pokemon-list');
-    let pokeItem = document.createElement('li');
-    let pokeButton = document.createElement('button');
-    pokeButton.innerText = pokemon.name;
-    pokeButton.classList.add('button-class');
-    pokeItem.appendChild(pokeButton);
-    pokeList.appendChild(pokeItem);
-    pokeButton.addEventListener('click', function() {
-        console.log(pokemon.name);
-        console.log(pokemon.weight);
-        console.log(pokemon.abilities);
-        showDetails(pokemon);
-    })
-    },
+    }
 }
-
-})();
+)();
+//End of IIFE
 
 
 function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-        console.log(pokemon);
-    })
+    pokemonRepo.loadDetails(pokemon).then(function () {
+        console.log(pokemon)
+    });
 }
-
-
 
 
 pokemonRepo.loadList().then(function () {
@@ -123,9 +98,9 @@ pokemonRepo.loadList().then(function () {
    });
 });
 
-pokemonRepo.add({name: 'Pikachu'});
-// pokemonRepo.add({weight: 21});
-// console.log(pokemonRepo.getAll());
+
+
+
 
 
 
