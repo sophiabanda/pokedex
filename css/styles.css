@@ -6,3 +6,8 @@ body {
 .pokemon-list, li {
     list-style: none;
 }
+
+.button-class {
+    color: brown;
+    background-color: white;
+}

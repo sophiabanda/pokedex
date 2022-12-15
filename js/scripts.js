@@ -29,8 +29,8 @@ let pokemonRepo = (function() {
         pokeList.appendChild(pokeItem);
         pokeButton.addEventListener('click', function() {
             console.log(pokemon.name);
-            console.log(pokemon.weight);
-            console.log(pokemon.abilities);
+            // console.log(pokemon.weight);
+            // console.log(pokemon.name);
             showDetails(pokemon);
         });
         }
@@ -39,12 +39,14 @@ let pokemonRepo = (function() {
 
     function loadList() {
         return fetch(apiUrl).then(function (response) {
-            return response.json();
+            return response.json()
         }).then(function (json) {  
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
-                    detailsURL: item.url
+                    detailsURL: item.url,
+                    weight: item.url.weight
+                    //how to pull in the weight I was able to pull in under load details?
                 };
                 add(pokemon);
             });
@@ -59,9 +61,12 @@ let pokemonRepo = (function() {
             return response.json();
         }).then(function (details) {
             item.imageUrl = details.sprites.front_default;
-            // item.weight = details.weight;
             item.types = details.types;
-            // item.abilities = details.abilities;
+            item.weight = details.weight;
+            item.abilities = details.abilities;
+            console.log(details.weight)
+            //how to access the array items inside of abilities key ----- ? ? ?
+
         }).catch(function (e) {
             console.error(e);
         });
@@ -82,6 +87,7 @@ let pokemonRepo = (function() {
 
 function showDetails(pokemon) {
     pokemonRepo.loadDetails(pokemon).then(function () {
+        console.log(pokemon)
     });
 }
 
@@ -91,6 +97,8 @@ pokemonRepo.loadList().then(function () {
         pokemonRepo.addListItem(pokemon);
    });
 });
+
+
 
 
 
