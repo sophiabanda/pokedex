@@ -1,8 +1,9 @@
 
+
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
 
     function add(pokemon) {
         if (typeof pokemon === 'object' && 'name') {
@@ -38,15 +39,15 @@ let pokemonRepo = (function() {
     }
 
     function loadList() {
-        
         return fetch(apiUrl).then(function (response) {
         return response.json()
+
         }).then(function (json) {  
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
                     detailsURL: item.url,
-                    weight: item.url.weight
+                    // weight: item.url.weight
                     //how to pull in the weight I was able to pull in under load details?
                 };
                 add(pokemon);
@@ -64,7 +65,7 @@ let pokemonRepo = (function() {
             item.imageUrl = details.sprites.front_default;
             item.types = details.types;
             item.weight = details.weight;
-            item.abilities = details.abilities;
+            // item.abilities = details.abilities;
             console.log(details.weight)
             //how to access the array items inside of abilities key ----- ? ? ?
 
