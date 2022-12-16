@@ -1,4 +1,4 @@
-
+//I'm having a hard time understanding the commonatlities between all of the functions. How is each accessing data?
 
 let pokemonRepo = (function() {
 
@@ -15,27 +15,6 @@ let pokemonRepo = (function() {
 
     function getAll() {
         return pokemonList;
-    }
-
-    function addListItem (pokemon) {
-
-        if (typeof document !== 'undefined' ) {
-
-        let pokeList = document.querySelector('.pokemon-list');
-        let pokeItem = document.createElement('li');
-        let pokeButton = document.createElement('button');
-        pokeButton.innerText = pokemon.name;
-        pokeButton.classList.add('button-class');
-        pokeItem.appendChild(pokeButton);
-        pokeList.appendChild(pokeItem);
-        pokeButton.addEventListener('click', function() {
-            console.log(pokemon.name);
-            // console.log(pokemon.weight);
-            // console.log(pokemon.name);
-            showDetails(pokemon);
-        });
-        }
-
     }
 
     function loadList() {
@@ -56,6 +35,28 @@ let pokemonRepo = (function() {
             console.error(e);
         });
     }
+
+    function addListItem (pokemon) {
+
+        if (typeof document !== 'undefined' ) {
+
+        let pokeList = document.querySelector('.pokemon-list');
+        let pokeItem = document.createElement('li');
+        let pokeButton = document.createElement('button');
+        pokeButton.innerText = pokemon.name;
+        pokeButton.classList.add('button-class');
+        pokeItem.appendChild(pokeButton);
+        pokeList.appendChild(pokeItem);
+        pokeButton.addEventListener('click', function() {
+            console.log(pokemon.name);
+            // console.log(pokemon.weight);
+            // console.log(pokemon.name);
+            showDetails(pokemon);
+        });
+        }
+    }
+
+
 
     function loadDetails(item) {
         let url = item.detailsURL;
