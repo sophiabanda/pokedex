@@ -10,8 +10,9 @@ body {
 .button-class {
     color: brown;
     background-color: white;
+    margin: 5px;
 }
 
-.loading {
+/* .loading {
     
-}
+} */
