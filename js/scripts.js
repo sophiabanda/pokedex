@@ -3,8 +3,14 @@
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=100';
 
+    //Returns Pokemon array:
+    function getAll() {
+        return pokemonList;
+    }
+
+    //Adds new Pokemon to array if aligns with parameters (WIP):
     function add(pokemon) {
         if (typeof pokemon === 'object' && 'name') {
             pokemonList.push(pokemon);
@@ -13,32 +19,29 @@ let pokemonRepo = (function() {
         };
     }
 
-    function getAll() {
-        return pokemonList;
-    }
 
     function loadList() {
+        //Calls on api to return json file
         return fetch(apiUrl).then(function (response) {
         return response.json()
-
+        
+        //Then we sort through array to pull out specific portions utilizing forEach and dot notation:
         }).then(function (json) {  
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
-                    detailsURL: item.url,
-                    // weight: item.url.weight
-                    //how to pull in the weight I was able to pull in under load details?
+                    detailsURL: item.url
                 };
+                // ** I don't quite understand what this does. Retrieving all 100, or accessing list of 100 in order to add the next?
                 add(pokemon);
             });
+
         }).catch(function (e) {
             console.error(e);
         });
     }
 
     function addListItem (pokemon) {
-
-        if (typeof document !== 'undefined' ) {
 
         let pokeList = document.querySelector('.pokemon-list');
         let pokeItem = document.createElement('li');
@@ -49,11 +52,8 @@ let pokemonRepo = (function() {
         pokeList.appendChild(pokeItem);
         pokeButton.addEventListener('click', function() {
             console.log(pokemon.name);
-            // console.log(pokemon.weight);
-            // console.log(pokemon.name);
             showDetails(pokemon);
         });
-        }
     }
 
 
@@ -63,12 +63,18 @@ let pokemonRepo = (function() {
         return fetch(url).then(function (response) {
             return response.json();
         }).then(function (details) {
+
             item.imageUrl = details.sprites.front_default;
             item.types = details.types;
             item.weight = details.weight;
-            // item.abilities = details.abilities;
-            console.log(details.weight)
-            //how to access the array items inside of abilities key ----- ? ? ?
+            item.abilities = details.abilities;
+            item.height = details.height;
+            item.species = details.species.name;
+
+            console.log(details.height);
+            console.log(details.types);
+            console.log(details.weight);
+            console.log(details.sprites.front_default);
 
         }).catch(function (e) {
             console.error(e);
@@ -90,7 +96,7 @@ let pokemonRepo = (function() {
 
 function showDetails(pokemon) {
     pokemonRepo.loadDetails(pokemon).then(function () {
-        console.log(pokemon)
+        // console.log(pokemon)
     });
 }
 
