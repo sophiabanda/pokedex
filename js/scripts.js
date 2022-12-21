@@ -64,16 +64,15 @@ let pokemonRepo = (function() {
         }).then(function (details) {
 
             item.imageUrl = details.sprites.front_default;
-            item.types = details.types;
+            //Map arrow function to access deeper levels of object:
+            item.types = details.types.map((type) => ' ' + type.type.name.toUpperCase());
             item.weight = details.weight;
-            item.abilities = details.abilities;
+            item.abilities = details.abilities.map((ability) => ' ' + ability.ability.name.toUpperCase());
             item.height = details.height;
-            item.species = details.species.name;
-
-            console.log(details.weight);
-            console.log(details.types);
-            console.log(details.height);
-            console.log(details.sprites.front_default);
+            // console.log(details.weight);
+            // console.log(details.types);
+            // console.log(details.height);
+            // console.log(details.sprites.front_default);
 
         }).catch(function (e) {
             console.error(e);
@@ -103,19 +102,28 @@ let pokemonRepo = (function() {
         pokeNameTitle.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
         let pokeWeight = document.createElement('p');
-        pokeWeight.innerText = `Weighs in at ${pokemon.weight}lbs.`;
+        pokeWeight.innerText = `Weight: ${pokemon.weight}lbs`;
 
         let pokeHeight = document.createElement('p');
-        pokeHeight.innerText = `Stands at ${pokemon.height}ft. tall.`;
+        pokeHeight.innerText = `Height: ${pokemon.height}ft. tall`;
 
         let pokeImage = document.createElement('img');
         pokeImage.src = pokemon.imageUrl;
 
+        let pokeTypes = document.createElement('p');
+        pokeTypes.innerText = `Types: ${pokemon.types}`;
+
+        let pokeAbilities = document.createElement('p');
+        pokeAbilities.innerText = `Abilities: ${pokemon.abilities}`;
+
+        //Attach all the aforementioned to the modal that was created. 
         modal.appendChild(closeButton);
         modal.appendChild(pokeNameTitle);
         modal.appendChild(pokeWeight);
-        modal.appendChild(pokeHeight);
         modal.appendChild(pokeImage);
+        modal.appendChild(pokeHeight);
+        modal.appendChild(pokeTypes);
+        modal.appendChild(pokeAbilities);
         pokeModal.appendChild(modal);
     
         pokeModal.classList.add('is-visible');
@@ -129,6 +137,7 @@ let pokemonRepo = (function() {
     
     }
 
+
     function hideModal() {
         let pokeModal = document.querySelector('#poke-modal-container');
         pokeModal.classList.remove('is-visible');
@@ -138,9 +147,6 @@ let pokemonRepo = (function() {
         let pokeModal = document.querySelector('#poke-modal-container');
     })
     
-    // document.querySelector('#show-modal').addEventListener('click', () => {
-    //     showModal('Title', 'Content');
-    // })
 
     return {
         add: add,
