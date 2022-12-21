@@ -65,9 +65,9 @@ let pokemonRepo = (function() {
 
             item.imageUrl = details.sprites.front_default;
             //Map arrow function to access deeper levels of object:
-            item.types = details.types.map((type) => ' ' + type.type.name.toUpperCase());
+            item.types = details.types.map((type) => ' ' + type.type.name);
             item.weight = details.weight;
-            item.abilities = details.abilities.map((ability) => ' ' + ability.ability.name.toUpperCase());
+            item.abilities = details.abilities.map((ability) => ' ' + ability.ability.name);
             item.height = details.height;
             // console.log(details.weight);
             // console.log(details.types);
