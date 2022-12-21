@@ -3,7 +3,7 @@
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=500';
 
     //Returns Pokemon array:
     function getAll() {
@@ -97,6 +97,7 @@ let pokemonRepo = (function() {
         let closeButton = document.createElement('button');
         closeButton.classList.add('modal-close');
         closeButton.innerText = 'Close';
+        closeButton.addEventListener('click', hideModal);
     
         let pokeNameTitle = document.createElement('h1');
         pokeNameTitle.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
