@@ -3,7 +3,7 @@
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=100';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
 
     //Returns Pokemon array:
     function getAll() {
@@ -57,7 +57,6 @@ let pokemonRepo = (function() {
     }
 
 
-
     function loadDetails(item) {
         let url = item.detailsURL;
         return fetch(url).then(function (response) {
@@ -71,9 +70,9 @@ let pokemonRepo = (function() {
             item.height = details.height;
             item.species = details.species.name;
 
-            console.log(details.height);
-            console.log(details.types);
             console.log(details.weight);
+            console.log(details.types);
+            console.log(details.height);
             console.log(details.sprites.front_default);
 
         }).catch(function (e) {
@@ -81,24 +80,79 @@ let pokemonRepo = (function() {
         });
     }
 
+    function showDetails(pokemon) {
+        pokemonRepo.loadDetails(pokemon).then(function () {
+            showModal(pokemon);
+        });
+    }
+        
+    function showModal(pokemon) {
+        //Clear existing modal content:
+        let pokeModal = document.querySelector('#poke-modal-container');
+        pokeModal.innerHTML = '';
+    
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+    
+        let closeButton = document.createElement('button');
+        closeButton.classList.add('modal-close');
+        closeButton.innerText = 'Close';
+    
+        let pokeNameTitle = document.createElement('h1');
+        pokeNameTitle.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+
+        let pokeWeight = document.createElement('p');
+        pokeWeight.innerText = `Weighs in at ${pokemon.weight}lbs.`;
+
+        let pokeHeight = document.createElement('p');
+        pokeHeight.innerText = `Stands at ${pokemon.height}ft. tall.`;
+
+        let pokeImage = document.createElement('img');
+        pokeImage.src = pokemon.imageUrl;
+
+        modal.appendChild(closeButton);
+        modal.appendChild(pokeNameTitle);
+        modal.appendChild(pokeWeight);
+        modal.appendChild(pokeHeight);
+        modal.appendChild(pokeImage);
+        pokeModal.appendChild(modal);
+    
+        pokeModal.classList.add('is-visible');
+
+        pokeModal.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === pokeModal) {
+                hideModal();
+            }
+        });
+    
+    }
+
+    function hideModal() {
+        let pokeModal = document.querySelector('#poke-modal-container');
+        pokeModal.classList.remove('is-visible');
+    }
+
+    window.addEventListener('keydown', (e) => {
+        let pokeModal = document.querySelector('#poke-modal-container');
+    })
+    
+    // document.querySelector('#show-modal').addEventListener('click', () => {
+    //     showModal('Title', 'Content');
+    // })
+
     return {
         add: add,
         getAll: getAll,
         addListItem: addListItem,
         loadList: loadList,
-        loadDetails: loadDetails
+        loadDetails: loadDetails,
+        showDetails: showDetails
 
     }
 }
 )();
 //End of IIFE
-
-
-function showDetails(pokemon) {
-    pokemonRepo.loadDetails(pokemon).then(function () {
-        // console.log(pokemon)
-    });
-}
 
 
 pokemonRepo.loadList().then(function () {
