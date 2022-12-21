@@ -46,7 +46,7 @@ let pokemonRepo = (function() {
         let pokeList = document.querySelector('.pokemon-list');
         let pokeItem = document.createElement('li');
         let pokeButton = document.createElement('button');
-        pokeButton.innerText = pokemon.name;
+        pokeButton.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
         pokeButton.classList.add('button-class');
         pokeItem.appendChild(pokeButton);
         pokeList.appendChild(pokeItem);
