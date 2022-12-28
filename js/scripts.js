@@ -43,7 +43,7 @@ let pokemonRepo = (function() {
 
     function addListItem (pokemon) {
 
-        let pokeList = document.querySelector('.pokemon-list');
+        let pokeList = document.querySelector('.list-group');
         let pokeItem = document.createElement('li');
         let pokeButton = document.createElement('button');
         pokeButton.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
