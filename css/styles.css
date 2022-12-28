@@ -37,7 +37,7 @@ body {
   text-align: center;
 }
 
-.modal {
+/* .modal {
   margin: auto;
   display: inline-block;
   box-sizing: border-box;
@@ -46,7 +46,7 @@ body {
   width: 100%;
   max-width: 500px;
   text-align: left;
-}
+} */
 
 .modal-close {
   float: right;

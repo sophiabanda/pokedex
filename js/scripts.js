@@ -82,66 +82,93 @@ let pokemonRepo = (function() {
     }
         
     function showModal(pokemon) {
+
+        let modalBody = $('.modal-body');
+        let modalTitle = $('.modal-title');
+   //Clear existing modal content:
+        // let pokeModal = document.querySelector('.modal');
+        // pokeModal.innerHTML = '';
+
+        modalBody.empty();
+        modalTitle.empty();
+        
+        let pokeName = $('<h1>' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</h1>');
+        let pokeImage = $('<img class="modal-img" style="width:50%">');
+        pokeImage.attr('src', pokemon.imageUrl);
+        // let pokeHeight = $('<p> + Height: ${pokemon.height}ft. tall + </p>');
+        // let pokeWeight = $('<p>`Weight: ${pokemon.weight}lbs`</p>');
+        // let pokeTypes = $('<p>`Types: ${pokemon.types}`</p>');
+        // let pokeAbilities = $('<p>Abilities: ${pokemon.abilities}</p>');
+        
+
+        modalTitle.append(pokeName);
+        modalBody.append(pokeImage);
+        // modalBody.append(pokeHeight);
+        // modalBody.append(pokeWeight);
+        // modalBody.append(pokeTypes);
+        // modalBody.append(pokeAbilities);
+
+        
         //Clear existing modal content:
-        let pokeModal = document.querySelector('#poke-modal-container');
-        pokeModal.innerHTML = '';
+        // let pokeModal = document.querySelector('#poke-modal-container');
+        // pokeModal.innerHTML = '';
     
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
+        // let modal = document.createElement('div');
+        // modal.classList.add('modal');
     
-        let closeButton = document.createElement('button');
-        closeButton.classList.add('modal-close');
-        closeButton.innerText = 'Close';
-        closeButton.addEventListener('click', hideModal);
+        // let closeButton = document.createElement('button');
+        // closeButton.classList.add('modal-close');
+        // closeButton.innerText = 'Close';
+        // closeButton.addEventListener('click', hideModal);
     
-        let pokeNameTitle = document.createElement('h1');
-        pokeNameTitle.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+        // let pokeNameTitle = document.createElement('h1');
+        // pokeNameTitle.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
-        let pokeWeight = document.createElement('p');
-        pokeWeight.innerText = `Weight: ${pokemon.weight}lbs`;
+        // let pokeWeight = document.createElement('p');
+        // pokeWeight.innerText = `Weight: ${pokemon.weight}lbs`;
 
-        let pokeHeight = document.createElement('p');
-        pokeHeight.innerText = `Height: ${pokemon.height}ft. tall`;
+        // let pokeHeight = document.createElement('p');
+        // pokeHeight.innerText = `Height: ${pokemon.height}ft. tall`;
 
-        let pokeImage = document.createElement('img');
-        pokeImage.src = pokemon.imageUrl;
+        // let pokeImage = document.createElement('img');
+        // pokeImage.src = pokemon.imageUrl;
 
-        let pokeTypes = document.createElement('p');
-        pokeTypes.innerText = `Types: ${pokemon.types}`;
+        // let pokeTypes = document.createElement('p');
+        // pokeTypes.innerText = `Types: ${pokemon.types}`;
 
-        let pokeAbilities = document.createElement('p');
-        pokeAbilities.innerText = `Abilities: ${pokemon.abilities}`;
+        // let pokeAbilities = document.createElement('p');
+        // pokeAbilities.innerText = `Abilities: ${pokemon.abilities}`;
 
-        //Attach all the aforementioned to the modal that was created. 
-        modal.appendChild(closeButton);
-        modal.appendChild(pokeNameTitle);
-        modal.appendChild(pokeWeight);
-        modal.appendChild(pokeImage);
-        modal.appendChild(pokeHeight);
-        modal.appendChild(pokeTypes);
-        modal.appendChild(pokeAbilities);
-        pokeModal.appendChild(modal);
+        // //Attach all the aforementioned to the modal that was created. 
+        // modal.appendChild(closeButton);
+        // modal.appendChild(pokeNameTitle);
+        // modal.appendChild(pokeWeight);
+        // modal.appendChild(pokeImage);
+        // modal.appendChild(pokeHeight);
+        // modal.appendChild(pokeTypes);
+        // modal.appendChild(pokeAbilities);
+        // pokeModal.appendChild(modal);
     
-        pokeModal.classList.add('is-visible');
+        // pokeModal.classList.add('is-visible');
 
-        pokeModal.addEventListener('click', (e) => {
-            let target = e.target;
-            if (target === pokeModal) {
-                hideModal();
-            }
-        });
+        // pokeModal.addEventListener('click', (e) => {
+        //     let target = e.target;
+        //     if (target === pokeModal) {
+        //         hideModal();
+        //     }
+        // });
     
     }
 
 
-    function hideModal() {
-        let pokeModal = document.querySelector('#poke-modal-container');
-        pokeModal.classList.remove('is-visible');
-    }
+    // function hideModal() {
+    //     let pokeModal = document.querySelector('#poke-modal-container');
+    //     pokeModal.classList.remove('is-visible');
+    // }
 
-    window.addEventListener('keydown', (e) => {
-        let pokeModal = document.querySelector('#poke-modal-container');
-    })
+    // window.addEventListener('keydown', (e) => {
+    //     let pokeModal = document.querySelector('#poke-modal-container');
+    // })
     
 
     return {
