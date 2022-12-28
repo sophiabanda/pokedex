@@ -69,10 +69,6 @@ let pokemonRepo = (function() {
             item.weight = details.weight;
             item.abilities = details.abilities.map((ability) => ' ' + ability.ability.name);
             item.height = details.height;
-            // console.log(details.weight);
-            // console.log(details.types);
-            // console.log(details.height);
-            // console.log(details.sprites.front_default);
 
         }).catch(function (e) {
             console.error(e);
