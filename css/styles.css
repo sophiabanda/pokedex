@@ -48,9 +48,8 @@ body {
   text-align: left;
 } */
 
-.modal-close {
+/* .modal-close {
   float: right;
-  /* -webkit-appearance: none; */
   border: 0;
   background: none;
   color: #777;
@@ -72,4 +71,4 @@ body {
 
 #poke-modal-container.is-visible {
   display: grid;
-}
+} */
