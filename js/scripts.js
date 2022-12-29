@@ -98,7 +98,7 @@ let pokemonRepo = (function() {
         modalTitle.empty();
         
         let pokeName = $('<h1>' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</h1>');
-        let pokeImageFront = $('<img class="modal-img" style="width:50%">');
+        let pokeImageFront = $('<img style="width:30%" class="modal-img">');
         pokeImageFront.attr('src', pokemon.imageFront);
         let pokeImageBack = $('<img class="modal-img">');
         pokeImageBack.attr('src', pokemon.imageBack)
