@@ -1,4 +1,4 @@
-//I'm having a hard time understanding the commonatlities between all of the functions. How is each accessing data?
+
 
 let pokemonRepo = (function() {
 
@@ -32,7 +32,7 @@ let pokemonRepo = (function() {
                     name: item.name,
                     detailsURL: item.url
                 };
-                // ** I don't quite understand what this does. Retrieving all 100, or accessing list of 100 in order to add the next?
+                //Adds each pokemon to the list
                 add(pokemon);
             });
 
@@ -43,14 +43,16 @@ let pokemonRepo = (function() {
 
     function addListItem (pokemon) {
 
-        let pokeList = document.querySelector('.pokemon-list');
-        let pokeItem = document.createElement('li');
-        let pokeButton = document.createElement('button');
-        pokeButton.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-        pokeButton.classList.add('button-class');
-        pokeItem.appendChild(pokeButton);
-        pokeList.appendChild(pokeItem);
-        pokeButton.addEventListener('click', function() {
+        // let pokeList = document.querySelector('.list-group');
+        let pokeList = $('.list-group');
+        // let pokeItem = document.createElement('li');
+        let pokeItem = $('<li class="col-2"></li> ');
+        // let pokeButton = document.createElement('button');
+        let pokeButton = $('<button class="btn btn-light" data-target="#poke-modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
+        // pokeButton.classList.add('button-class');
+        pokeItem.append(pokeButton);
+        pokeList.append(pokeItem);
+        pokeButton.on('click', function() {
             console.log(pokemon.name);
             showDetails(pokemon);
         });
@@ -63,16 +65,13 @@ let pokemonRepo = (function() {
             return response.json();
         }).then(function (details) {
 
-            item.imageUrl = details.sprites.front_default;
+            item.imageFront = details.sprites.front_default;
+            item.imageBack = details.sprites.back_default;
             //Map arrow function to access deeper levels of object:
             item.types = details.types.map((type) => ' ' + type.type.name);
             item.weight = details.weight;
             item.abilities = details.abilities.map((ability) => ' ' + ability.ability.name);
             item.height = details.height;
-            // console.log(details.weight);
-            // console.log(details.types);
-            // console.log(details.height);
-            // console.log(details.sprites.front_default);
 
         }).catch(function (e) {
             console.error(e);
@@ -86,66 +85,37 @@ let pokemonRepo = (function() {
     }
         
     function showModal(pokemon) {
-        //Clear existing modal content:
-        let pokeModal = document.querySelector('#poke-modal-container');
-        pokeModal.innerHTML = '';
-    
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
-    
-        let closeButton = document.createElement('button');
-        closeButton.classList.add('modal-close');
-        closeButton.innerText = 'Close';
-        closeButton.addEventListener('click', hideModal);
-    
-        let pokeNameTitle = document.createElement('h1');
-        pokeNameTitle.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
-        let pokeWeight = document.createElement('p');
-        pokeWeight.innerText = `Weight: ${pokemon.weight}lbs`;
+        let modalBody = $('.modal-body');
+        let modalTitle = $('.modal-title');
 
-        let pokeHeight = document.createElement('p');
-        pokeHeight.innerText = `Height: ${pokemon.height}ft. tall`;
+        modalBody.empty();
+        modalTitle.empty();
+        
+        let pokeName = $('<h1>' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</h1>');
+        let pokeImageFront = $('<img class="modal-img" style="width:50%">');
+        pokeImageFront.attr('src', pokemon.imageFront);
+        let pokeImageBack = $('<img class="modal-img">');
+        pokeImageBack.attr('src', pokemon.imageBack)
+        let pokeHeight = $('<p>' + `Height: ${pokemon.height}ft. tall` + '</p>');
+        let pokeWeight = $('<p>' + `Weight: ${pokemon.weight}lbs` + '</p>');
+        let pokeTypes = $('<p>' + `Types: ${pokemon.types}` + '</p>');
+        let pokeAbilities = $('<p>' + `Abilities: ${pokemon.abilities}` + '</p>');
+        
 
-        let pokeImage = document.createElement('img');
-        pokeImage.src = pokemon.imageUrl;
+        modalTitle.append(pokeName);
+        modalBody.append(pokeImageFront);
+        modalBody.append(pokeImageBack);
+        modalBody.append(pokeHeight);
+        modalBody.append(pokeWeight);
+        modalBody.append(pokeTypes);
+        modalBody.append(pokeAbilities);
 
-        let pokeTypes = document.createElement('p');
-        pokeTypes.innerText = `Types: ${pokemon.types}`;
-
-        let pokeAbilities = document.createElement('p');
-        pokeAbilities.innerText = `Abilities: ${pokemon.abilities}`;
-
-        //Attach all the aforementioned to the modal that was created. 
-        modal.appendChild(closeButton);
-        modal.appendChild(pokeNameTitle);
-        modal.appendChild(pokeWeight);
-        modal.appendChild(pokeImage);
-        modal.appendChild(pokeHeight);
-        modal.appendChild(pokeTypes);
-        modal.appendChild(pokeAbilities);
-        pokeModal.appendChild(modal);
-    
-        pokeModal.classList.add('is-visible');
-
-        pokeModal.addEventListener('click', (e) => {
-            let target = e.target;
-            if (target === pokeModal) {
-                hideModal();
-            }
-        });
     
     }
 
 
-    function hideModal() {
-        let pokeModal = document.querySelector('#poke-modal-container');
-        pokeModal.classList.remove('is-visible');
-    }
 
-    window.addEventListener('keydown', (e) => {
-        let pokeModal = document.querySelector('#poke-modal-container');
-    })
     
 
     return {
