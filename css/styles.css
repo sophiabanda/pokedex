@@ -20,16 +20,8 @@ ul {
 
 .modal-footer, .modal-header, .modal-body {
   background-color: #f6d852;
-  /* background-color: #12182B; */
   color: #394f6b;
-  /* color: white; */
   border-color: #394f6b;
 }
 
-
-.nav {
-  display: grid;
-  grid-column-start: 1;
-  
-}
 
