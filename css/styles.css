@@ -6,7 +6,6 @@ body {
 }
 
 
-
 ul {
   list-style-type: none;
 }
@@ -27,4 +26,10 @@ ul {
   border-color: #394f6b;
 }
 
+
+.nav {
+  display: grid;
+  grid-column-start: 1;
+  
+}
 
