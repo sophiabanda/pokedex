@@ -48,7 +48,7 @@ let pokemonRepo = (function() {
         // let pokeItem = document.createElement('li');
         let pokeItem = $('<li></li> .group-list-item');
         // let pokeButton = document.createElement('button');
-        let pokeButton = $('<button data-target="modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
+        let pokeButton = $('<button btn-dark, data-target="poke-modal", data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
         // pokeButton.classList.add('button-class');
         pokeItem.append(pokeButton);
         pokeList.append(pokeItem);
@@ -65,7 +65,8 @@ let pokemonRepo = (function() {
             return response.json();
         }).then(function (details) {
 
-            item.imageUrl = details.sprites.front_default;
+            item.imageFront = details.sprites.front_default;
+            item.imageBack = details.sprites.back_default;
             //Map arrow function to access deeper levels of object:
             item.types = details.types.map((type) => ' ' + type.type.name);
             item.weight = details.weight;
@@ -92,20 +93,23 @@ let pokemonRepo = (function() {
         modalTitle.empty();
         
         let pokeName = $('<h1>' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</h1>');
-        let pokeImage = $('<img class="modal-img" style="width:50%">');
-        pokeImage.attr('src', pokemon.imageUrl);
-        // let pokeHeight = $('<p> + Height: ${pokemon.height}ft. tall + </p>');
-        // let pokeWeight = $('<p>`Weight: ${pokemon.weight}lbs`</p>');
-        // let pokeTypes = $('<p>`Types: ${pokemon.types}`</p>');
-        // let pokeAbilities = $('<p>Abilities: ${pokemon.abilities}</p>');
+        let pokeImageFront = $('<img class="modal-img" style="width:50%">');
+        pokeImageFront.attr('src', pokemon.imageFront);
+        let pokeImageBack = $('<img class="modal-img">');
+        pokeImageBack.attr('src', pokemon.imageBack)
+        let pokeHeight = $('<p>' + 'Height: ${pokemon.height}ft. tall' + '</p>');
+        let pokeWeight = $('<p>' + 'Weight: ${pokemon.weight}lbs' + '</p>');
+        let pokeTypes = $('<p>' + 'Types: ${pokemon.types}' + '</p>');
+        let pokeAbilities = $('<p' + 'Abilities: ${pokemon.abilities}' + '</p>');
         
 
         modalTitle.append(pokeName);
-        modalBody.append(pokeImage);
-        // modalBody.append(pokeHeight);
-        // modalBody.append(pokeWeight);
-        // modalBody.append(pokeTypes);
-        // modalBody.append(pokeAbilities);
+        modalBody.append(pokeImageFront);
+        modalBody.append(pokeImageBack);
+        modalBody.append(pokeHeight);
+        modalBody.append(pokeWeight);
+        modalBody.append(pokeTypes);
+        modalBody.append(pokeAbilities);
 
         
         //Clear existing modal content:
