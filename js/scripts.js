@@ -19,6 +19,15 @@ let pokemonRepo = (function() {
         };
     }
 
+    $(document).ready(function () {
+        $('#search-form').on("keyup", function() {
+            let value = $(this).val().toLowerCase();
+            $('.btn').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            })
+        })
+    });
+
 
     function loadList() {
         //Calls on api to return json file
