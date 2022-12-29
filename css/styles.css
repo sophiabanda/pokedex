@@ -1,12 +1,30 @@
-/* html, 
+html, 
 body {
   font-family: Arial, sans-serif;
-  background-color: rgb(9, 145, 145);
+  background-color: #54BEC0;
     color: darkblue;
 }
- */
+
 
 
 ul {
   list-style-type: none;
 }
+
+.btn {
+  width: 10rem;
+  height: 3rem;
+  margin: 10px;
+  background-color: #394E6B;
+  color: white;
+}
+
+.modal-footer, .modal-header, .modal-body {
+  background-color: #f6d852;
+  /* background-color: #12182B; */
+  color: #394f6b;
+  /* color: white; */
+  border-color: #394f6b;
+}
+
+
