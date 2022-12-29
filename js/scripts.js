@@ -1,9 +1,9 @@
-//I'm having a hard time understanding the commonatlities between all of the functions. How is each accessing data?
+
 
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=500';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
 
     //Returns Pokemon array:
     function getAll() {
@@ -32,7 +32,7 @@ let pokemonRepo = (function() {
                     name: item.name,
                     detailsURL: item.url
                 };
-                // ** I don't quite understand what this does. Retrieving all 100, or accessing list of 100 in order to add the next?
+                //Adds each pokemon to the list
                 add(pokemon);
             });
 
@@ -43,14 +43,16 @@ let pokemonRepo = (function() {
 
     function addListItem (pokemon) {
 
-        let pokeList = document.querySelector('.list-group');
-        let pokeItem = document.createElement('li');
-        let pokeButton = document.createElement('button');
-        pokeButton.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-        pokeButton.classList.add('button-class');
-        pokeItem.appendChild(pokeButton);
-        pokeList.appendChild(pokeItem);
-        pokeButton.addEventListener('click', function() {
+        // let pokeList = document.querySelector('.list-group');
+        let pokeList = $('.list-group');
+        // let pokeItem = document.createElement('li');
+        let pokeItem = $('<li></li> .group-list-item');
+        // let pokeButton = document.createElement('button');
+        let pokeButton = $('<button data-target="modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
+        // pokeButton.classList.add('button-class');
+        pokeItem.append(pokeButton);
+        pokeList.append(pokeItem);
+        pokeButton.on('click', function() {
             console.log(pokemon.name);
             showDetails(pokemon);
         });
@@ -85,9 +87,6 @@ let pokemonRepo = (function() {
 
         let modalBody = $('.modal-body');
         let modalTitle = $('.modal-title');
-   //Clear existing modal content:
-        // let pokeModal = document.querySelector('.modal');
-        // pokeModal.innerHTML = '';
 
         modalBody.empty();
         modalTitle.empty();
