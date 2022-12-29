@@ -3,7 +3,7 @@
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=500';
 
     //Returns Pokemon array:
     function getAll() {
@@ -46,9 +46,9 @@ let pokemonRepo = (function() {
         // let pokeList = document.querySelector('.list-group');
         let pokeList = $('.list-group');
         // let pokeItem = document.createElement('li');
-        let pokeItem = $('<li></li> ');
+        let pokeItem = $('<li class="col-4"></li> ');
         // let pokeButton = document.createElement('button');
-        let pokeButton = $('<button class="btn, btn-light", data-target="#poke-modal", data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
+        let pokeButton = $('<button class="btn btn-light" data-target="#poke-modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
         // pokeButton.classList.add('button-class');
         pokeItem.append(pokeButton);
         pokeList.append(pokeItem);

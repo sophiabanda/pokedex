@@ -1,16 +1,12 @@
-html, 
+/* html, 
 body {
   font-family: Arial, sans-serif;
   background-color: rgb(9, 145, 145);
     color: darkblue;
 }
+ */
 
 
-
-.button-class {
-    color: brown;
-    background-color: white;
-    margin: 5px;
-}  
-
-
+ul {
+  list-style-type: none;
+}
