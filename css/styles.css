@@ -1,8 +1,7 @@
-
 html, 
 body {
   font-family: Arial, sans-serif;
-  background-color: aqua;
+  background-color: rgb(9, 145, 145);
     color: darkblue;
 }
 
@@ -12,6 +11,6 @@ body {
     color: brown;
     background-color: white;
     margin: 5px;
-} 
+}  
 
 

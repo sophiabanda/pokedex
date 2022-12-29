@@ -46,9 +46,9 @@ let pokemonRepo = (function() {
         // let pokeList = document.querySelector('.list-group');
         let pokeList = $('.list-group');
         // let pokeItem = document.createElement('li');
-        let pokeItem = $('<li></li> .group-list-item');
+        let pokeItem = $('<li></li> ');
         // let pokeButton = document.createElement('button');
-        let pokeButton = $('<button btn-dark, data-target="poke-modal", data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
+        let pokeButton = $('<button class="btn, btn-light", data-target="#poke-modal", data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
         // pokeButton.classList.add('button-class');
         pokeItem.append(pokeButton);
         pokeList.append(pokeItem);
@@ -97,10 +97,10 @@ let pokemonRepo = (function() {
         pokeImageFront.attr('src', pokemon.imageFront);
         let pokeImageBack = $('<img class="modal-img">');
         pokeImageBack.attr('src', pokemon.imageBack)
-        let pokeHeight = $('<p>' + 'Height: ${pokemon.height}ft. tall' + '</p>');
-        let pokeWeight = $('<p>' + 'Weight: ${pokemon.weight}lbs' + '</p>');
-        let pokeTypes = $('<p>' + 'Types: ${pokemon.types}' + '</p>');
-        let pokeAbilities = $('<p' + 'Abilities: ${pokemon.abilities}' + '</p>');
+        let pokeHeight = $('<p>' + `Height: ${pokemon.height}ft. tall` + '</p>');
+        let pokeWeight = $('<p>' + `Weight: ${pokemon.weight}lbs` + '</p>');
+        let pokeTypes = $('<p>' + `Types: ${pokemon.types}` + '</p>');
+        let pokeAbilities = $('<p>' + `Abilities: ${pokemon.abilities}` + '</p>');
         
 
         modalTitle.append(pokeName);
@@ -111,67 +111,11 @@ let pokemonRepo = (function() {
         modalBody.append(pokeTypes);
         modalBody.append(pokeAbilities);
 
-        
-        //Clear existing modal content:
-        // let pokeModal = document.querySelector('#poke-modal-container');
-        // pokeModal.innerHTML = '';
-    
-        // let modal = document.createElement('div');
-        // modal.classList.add('modal');
-    
-        // let closeButton = document.createElement('button');
-        // closeButton.classList.add('modal-close');
-        // closeButton.innerText = 'Close';
-        // closeButton.addEventListener('click', hideModal);
-    
-        // let pokeNameTitle = document.createElement('h1');
-        // pokeNameTitle.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-
-        // let pokeWeight = document.createElement('p');
-        // pokeWeight.innerText = `Weight: ${pokemon.weight}lbs`;
-
-        // let pokeHeight = document.createElement('p');
-        // pokeHeight.innerText = `Height: ${pokemon.height}ft. tall`;
-
-        // let pokeImage = document.createElement('img');
-        // pokeImage.src = pokemon.imageUrl;
-
-        // let pokeTypes = document.createElement('p');
-        // pokeTypes.innerText = `Types: ${pokemon.types}`;
-
-        // let pokeAbilities = document.createElement('p');
-        // pokeAbilities.innerText = `Abilities: ${pokemon.abilities}`;
-
-        // //Attach all the aforementioned to the modal that was created. 
-        // modal.appendChild(closeButton);
-        // modal.appendChild(pokeNameTitle);
-        // modal.appendChild(pokeWeight);
-        // modal.appendChild(pokeImage);
-        // modal.appendChild(pokeHeight);
-        // modal.appendChild(pokeTypes);
-        // modal.appendChild(pokeAbilities);
-        // pokeModal.appendChild(modal);
-    
-        // pokeModal.classList.add('is-visible');
-
-        // pokeModal.addEventListener('click', (e) => {
-        //     let target = e.target;
-        //     if (target === pokeModal) {
-        //         hideModal();
-        //     }
-        // });
     
     }
 
 
-    // function hideModal() {
-    //     let pokeModal = document.querySelector('#poke-modal-container');
-    //     pokeModal.classList.remove('is-visible');
-    // }
 
-    // window.addEventListener('keydown', (e) => {
-    //     let pokeModal = document.querySelector('#poke-modal-container');
-    // })
     
 
     return {
