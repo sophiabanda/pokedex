@@ -28,8 +28,19 @@ ul {
 nav {
   justify-content: right;
   align-items: center;
-  background-color: #A732FB ;
+  background-color: #f56586 ;
   color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f6d852;
+  text-decoration: none;
+
 }
 
 #search-form {
@@ -40,6 +51,8 @@ nav {
 h1 {
   margin-left: 10px;
 }
+
+
 
 
 
