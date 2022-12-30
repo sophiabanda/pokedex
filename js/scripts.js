@@ -3,7 +3,7 @@
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=500';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1200';
 
     //Returns Pokemon array:
     function getAll() {
