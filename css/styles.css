@@ -26,10 +26,10 @@ ul {
 
 
 nav {
-  justify-content: right;
   align-items: center;
   background-color: #f56586 ;
   color: white;
+  flex-wrap: none;
 }
 
 a {
