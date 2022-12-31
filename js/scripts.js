@@ -20,7 +20,7 @@ let pokemonRepo = (function() {
     $(document).ready(function () {
         $('#search-form').on("keyup", function() {
             let value = $(this).val().toLowerCase();
-            $('.btn').filter(function() {
+            $('.pokebutton').filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             })
         })
@@ -52,7 +52,7 @@ let pokemonRepo = (function() {
 
         let pokeList = $('.list-group');
         let pokeItem = $('<li class="col"></li> ');
-        let pokeButton = $('<button class="btn btn-light" data-target="#poke-modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
+        let pokeButton = $('<button class="btn btn-light pokebutton" data-target="#poke-modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</button>');
         pokeItem.append(pokeButton);
         pokeList.append(pokeItem);
         pokeButton.on('click', function() {
