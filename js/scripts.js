@@ -1,5 +1,3 @@
-
-
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
