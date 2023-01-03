@@ -1,7 +1,7 @@
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1200';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=100';
 
     //Returns Pokemon array:
     function getAll() {
@@ -22,7 +22,13 @@ let pokemonRepo = (function() {
             let value = $(this).val().toLowerCase();
             $('.pokebutton').filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            })
+            });
+            // if (value === 0) {
+            //     pokeItem.addClass('hidden')
+            // }
+            // if (pokeButton == 'style="display:none"') {
+            //     pokeItem.addClass('.hidden')
+            // }
         });
     });
 
@@ -51,7 +57,7 @@ let pokemonRepo = (function() {
     function addListItem (pokemon) {
 
         let pokeList = $('.list-group');
-        let pokeItem = $('<li class="col-"></li> ');
+        let pokeItem = $('<li class="col"></li> ');
         let pokeButton = $('<button class="btn btn-light pokebutton" data-target="#poke-modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + ' </button>');
         pokeItem.append(pokeButton);
         pokeList.append(pokeItem);
