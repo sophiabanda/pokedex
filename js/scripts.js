@@ -23,12 +23,6 @@ let pokemonRepo = (function() {
             $('.col').filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
-            // if (value === 0) {
-            //     pokeItem.addClass('hidden')
-            // }
-            // if (pokeButton == 'style="display:none"') {
-            //     pokeItem.addClass('.hidden')
-            // }
         });
     });
 
