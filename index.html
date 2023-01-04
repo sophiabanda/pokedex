@@ -12,7 +12,7 @@
     <a href="https://www.pokemon.com/us" target="_"><h2>Pokédex</h2></a>
     <input id="search-form" class="form-control" type="text" placeholder="Find your favorite here!">
   </nav>
-<body class="container">
+<body class="container-fluid">
     <ul class="row list-group list-group-horizontal no-gutters"></ul>
     <!-- Bootstrap Modal -->
     <div class="modal fade" id="poke-modal" tabindex="-1" role="dialog" aria-labelledby="pokemon modal with details of pokemon" aria-hidden="true">
@@ -28,7 +28,7 @@
             ...
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" aria-label="Close" data-dismiss="modal">Close</button>
+            <button type="button" id="modal-close-button" class="btn btn-secondary" aria-label="Close" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

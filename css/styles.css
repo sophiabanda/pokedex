@@ -9,11 +9,16 @@ ul {
 }
 
 .btn {
-  width: 20rem;
+  width: 18rem;
   height: 10rem;
-  margin: 20px;
+  margin: 25px;
   background-color: #394E6B;
   color: white;
+}
+
+#modal-close-button {
+    width: 8rem;
+    height: 4rem;
 }
 
 .modal-footer, .modal-header, .modal-body {
@@ -67,5 +72,6 @@ h2 {
 .col {
   flex-grow: unset;
 }
+
 
 
