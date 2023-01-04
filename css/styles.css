@@ -64,6 +64,8 @@ h2 {
   display: none;
 }
 
-
+.col {
+  flex-grow: unset;
+}
 
 
