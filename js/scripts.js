@@ -49,16 +49,27 @@ let pokemonRepo = (function() {
     }
 
     function addListItem (pokemon) {
+        
+      loadDetails(pokemon).then(function() {
 
-        let pokeList = $('.list-group');
-        let pokeItem = $('<li class="col"></li> ');
-        let pokeButton = $('<button class="btn btn-light pokebutton" data-target="#poke-modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + ' </button>');
-        pokeItem.append(pokeButton);
-        pokeList.append(pokeItem);
-        pokeButton.on('click', function() {
-            console.log(pokemon.name);
-            showDetails(pokemon);
-        });
+          let pokeList = $('.list-group');
+          let pokeItem = $('<li class="col"></li> ');
+          let pokeButton = $('<button class="btn btn-light pokebutton" data-target="#poke-modal" data-toggle="modal"></button>');
+          let pokeHeader = $('<h4>' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</h2>');
+          let buttonImage = $('<img>');
+          buttonImage.attr('src', pokemon.imageFront);
+          pokeButton.append(pokeHeader);
+          pokeButton.append(buttonImage);
+          pokeItem.append(pokeButton);
+          pokeList.append(pokeItem);
+          pokeButton.on('click', function() {
+              console.log(pokemon.name);
+              showDetails(pokemon);
+          });
+
+      }
+      )
+
     }
 
 
