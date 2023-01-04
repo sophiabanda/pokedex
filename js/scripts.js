@@ -62,19 +62,19 @@ let pokemonRepo = (function() {
     }
 
 
-    function loadDetails(item) {
-        let url = item.detailsURL;
+    function loadDetails(pokemon) {
+        let url = pokemon.detailsURL;
         return fetch(url).then(function (response) {
             return response.json();
         }).then(function (details) {
 
-            item.imageFront = details.sprites.front_default;
-            item.imageBack = details.sprites.back_default;
+            pokemon.imageFront = details.sprites.front_default;
+            pokemon.imageBack = details.sprites.back_default;
             //Map arrow function to access deeper levels of object:
-            item.types = details.types.map((type) => ' ' + type.type.name);
-            item.weight = details.weight;
-            item.abilities = details.abilities.map((ability) => ' ' + ability.ability.name);
-            item.height = details.height;
+            pokemon.types = details.types.map((type) => ' ' + type.type.name);
+            pokemon.weight = details.weight;
+            pokemon.abilities = details.abilities.map((ability) => ' ' + ability.ability.name);
+            pokemon.height = details.height;
 
         }).catch(function (e) {
             console.error(e);
