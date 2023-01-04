@@ -1,7 +1,7 @@
 let pokemonRepo = (function() {
 
     let pokemonList = []; 
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=100';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1200';
 
     //Returns Pokemon array:
     function getAll() {
@@ -20,7 +20,7 @@ let pokemonRepo = (function() {
     $(document).ready(function () {
         $('#search-form').on("keyup", function() {
             let value = $(this).val().toLowerCase();
-            $('.pokebutton').filter(function() {
+            $('.pokebutton, .col').filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
             // if (value === 0) {
