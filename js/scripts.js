@@ -49,32 +49,43 @@ let pokemonRepo = (function() {
     }
 
     function addListItem (pokemon) {
+        
+      loadDetails(pokemon).then(function() {
 
-        let pokeList = $('.list-group');
-        let pokeItem = $('<li class="col"></li> ');
-        let pokeButton = $('<button class="btn btn-light pokebutton" data-target="#poke-modal" data-toggle="modal">' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + ' </button>');
-        pokeItem.append(pokeButton);
-        pokeList.append(pokeItem);
-        pokeButton.on('click', function() {
-            console.log(pokemon.name);
-            showDetails(pokemon);
-        });
+          let pokeList = $('.list-group');
+          let pokeItem = $('<li class="col"></li> ');
+          let pokeButton = $('<button class="btn btn-light pokebutton" data-target="#poke-modal" data-toggle="modal"></button>');
+          let pokeHeader = $('<h4>' + pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) + '</h2>');
+          let buttonImage = $('<img>');
+          buttonImage.attr('src', pokemon.imageFront);
+          pokeButton.append(pokeHeader);
+          pokeButton.append(buttonImage);
+          pokeItem.append(pokeButton);
+          pokeList.append(pokeItem);
+          pokeButton.on('click', function() {
+              console.log(pokemon.name);
+              showDetails(pokemon);
+          });
+
+      }
+      )
+
     }
 
 
-    function loadDetails(item) {
-        let url = item.detailsURL;
+    function loadDetails(pokemon) {
+        let url = pokemon.detailsURL;
         return fetch(url).then(function (response) {
             return response.json();
         }).then(function (details) {
 
-            item.imageFront = details.sprites.front_default;
-            item.imageBack = details.sprites.back_default;
+            pokemon.imageFront = details.sprites.front_default;
+            pokemon.imageBack = details.sprites.back_default;
             //Map arrow function to access deeper levels of object:
-            item.types = details.types.map((type) => ' ' + type.type.name);
-            item.weight = details.weight;
-            item.abilities = details.abilities.map((ability) => ' ' + ability.ability.name);
-            item.height = details.height;
+            pokemon.types = details.types.map((type) => ' ' + type.type.name);
+            pokemon.weight = details.weight;
+            pokemon.abilities = details.abilities.map((ability) => ' ' + ability.ability.name);
+            pokemon.height = details.height;
 
         }).catch(function (e) {
             console.error(e);
