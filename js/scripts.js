@@ -20,7 +20,7 @@ let pokemonRepo = (function() {
     $(document).ready(function () {
         $('#search-form').on("keyup", function() {
             let value = $(this).val().toLowerCase();
-            $('.pokebutton, .col').filter(function() {
+            $('.col').filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
             // if (value === 0) {
