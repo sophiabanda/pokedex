@@ -16,11 +16,16 @@ ul {
 }
 
 .btn {
-  width: 10rem;
-  height: 4rem;
-  margin: 10px;
+  width: 18rem;
+  height: 10rem;
+  margin: 25px;
   background-color: #394E6B;
   color: white;
+}
+
+#modal-close-button {
+    width: 8rem;
+    height: 4rem;
 }
 
 .modal-footer, .modal-header, .modal-body {
@@ -71,5 +76,14 @@ h2 {
 }
 
 
+.hidden {
+  display: none;
+}
+
+.col {
+  -webkit-box-flex: unset;
+      -ms-flex-positive: unset;
+          flex-grow: unset;
+}
 
 
