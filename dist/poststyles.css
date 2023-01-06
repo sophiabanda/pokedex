@@ -21,6 +21,7 @@ ul {
   margin: 25px;
   background-color: #394E6B;
   color: white;
+  border-radius: 15px 50px;
 }
 
 #modal-close-button {
